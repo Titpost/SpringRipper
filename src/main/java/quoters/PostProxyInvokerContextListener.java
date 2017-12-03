@@ -6,6 +6,9 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import quoters.annotations.PostProxy;
+
+import java.lang.reflect.Method;
 
 /**
  * @author Tit on 03.12.2017
@@ -21,6 +24,20 @@ public class PostProxyInvokerContextListener implements ApplicationListener<Cont
         String[] names = context.getBeanDefinitionNames();
         for (String name : names) {
             BeanDefinition beanDefinition = factory.getBeanDefinition(name);
+            String originalClassName = beanDefinition.getBeanClassName();
+            try {
+                Class<?> originalClass = Class.forName(originalClassName);
+                Method[] methods = originalClass.getMethods();
+                for (Method method : methods) {
+                    if (method.isAnnotationPresent(PostProxy.class)) {
+                        Object bean = context.getBean(name);
+                        Method currentMethod = bean.getClass().getMethod(method.getName(), method.getParameterTypes());
+                        currentMethod.invoke(bean);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
