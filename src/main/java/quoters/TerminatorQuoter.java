@@ -1,5 +1,6 @@
 package quoters;
 
+import quoters.annotations.DeprecatedClass;
 import quoters.annotations.InjectRandomInt;
 import quoters.annotations.PostProxy;
 import quoters.annotations.Profiling;
@@ -11,6 +12,7 @@ import java.util.stream.IntStream;
  * Terminator Quoter.
  */
 @Profiling
+@DeprecatedClass(newImpl = T1000.class)
 public class TerminatorQuoter implements Quoter {
 
     @InjectRandomInt(min = 2, max = 9)
