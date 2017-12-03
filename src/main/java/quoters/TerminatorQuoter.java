@@ -1,5 +1,6 @@
 package quoters;
 
+import javax.annotation.PostConstruct;
 import java.util.stream.IntStream;
 
 /**
@@ -11,6 +12,16 @@ public class TerminatorQuoter implements Quoter {
     private int repeat;
 
     private String message;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Phase 2");
+        System.out.println(repeat);
+    }
+
+    public TerminatorQuoter() {
+        System.out.println("Phase 1");
+    }
 
     public void setMessage(String message) {
         this.message = message;
