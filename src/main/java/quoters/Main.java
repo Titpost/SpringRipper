@@ -2,10 +2,14 @@ package quoters;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import static java.lang.Thread.sleep;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        //context.refresh();
-        context.getBean(TerminatorQuoter.class).sayQuote();
+        //while (true) {
+        //    sleep(300);
+            context.getBean(Quoter.class).sayQuote();
+        //}
     }
 }

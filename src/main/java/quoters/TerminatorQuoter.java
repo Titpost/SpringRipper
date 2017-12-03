@@ -1,11 +1,15 @@
 package quoters;
 
+import quoters.annotations.InjectRandomInt;
+import quoters.annotations.Profiling;
+
 import javax.annotation.PostConstruct;
 import java.util.stream.IntStream;
 
 /**
  * Terminator Quoter.
  */
+@Profiling
 public class TerminatorQuoter implements Quoter {
 
     @InjectRandomInt(min = 2, max = 9)
