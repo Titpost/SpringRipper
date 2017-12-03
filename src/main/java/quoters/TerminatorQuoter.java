@@ -1,7 +1,8 @@
-package java.quoters;
+package quoters;
 
-import java.quoters.Quoter;
-
+/**
+ * Terminator Quoter.
+ */
 public class TerminatorQuoter implements Quoter {
 
     private String message;
@@ -10,7 +11,6 @@ public class TerminatorQuoter implements Quoter {
         this.message = message;
     }
 
-    @Override
     public void sayQuote() {
         System.out.println("message = " + message);
     }
