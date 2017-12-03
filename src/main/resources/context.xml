@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean class="TerminatorQuoter" id="terminatorQuoter">
+        <property name="message" value="I'll be back"/>
+    </bean>
+</beans>
